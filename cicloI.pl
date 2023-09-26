@@ -3,8 +3,8 @@
 
 
 % CURSO INTRODUCCION A LA CIENCIA DE DATOS
-curso(introduccion_a_la_ciencia_de _datos,[k,g],[55,less3],jesus_gamboa_u,3,[vie_16:00-18:00,vie_14:00-16:00]).
-curso(introduccion_a_la_ciencia_de _datos,[k,z],[55,less3],jesus_gamboa_u,3,[vie_16:00-18:00,mie_17:00-19:00]).
+curso(introduccion_a_la_ciencia_de_datos,[k,g],[55,less3],jesus_gamboa_u,3,[vie_16:00-18:00,vie_14:00-16:00]).
+curso(introduccion_a_la_ciencia_de_datos,[k,z],[55,less3],jesus_gamboa_u,3,[vie_16:00-18:00,mie_17:00-19:00]).
 
 
 % CURSO QUIMICA
