@@ -1,29 +1,14 @@
 
+# codigo guia de algunas opciones para usar tkinter
 
 from pyswip import Prolog
 
-# Inicializar la conexión a Prolog
-prolog = Prolog()
-prolog.consult("Base de datos para ususarios.pl")  
-""""
-#funciones para los botones
-
-def registro_usuario():
-
-
-def iniciar_secion():
-
-# Usando tkinter
-""" 
 import tkinter # ya se encuentra instalada en python
 
 ventana = tkinter.Tk()
 ventana.geometry("500x500") #tamaño de la ventana
 ventana.title("Bienvenidos a Gestion de horarios UNALM para estadisticos")
 
-
-# etiqueta_2 = tkinter.Label(ventana, text = "para estadistica e informatica")
-# etiqueta_2.pack()
 
 boton_inicio_1 = tkinter.Button(ventana, 
                                 text = "Registrar", 
