@@ -7,6 +7,13 @@ from pyswip import Prolog
 import tkinter as tk
 from pyswip import Prolog
 
+
+
+from pyswip import Prolog
+from pyswip.easy import *
+
+
+
 class VentanaPrincipal:
     def __init__(self, root):
         self.root = root
@@ -21,6 +28,10 @@ class VentanaPrincipal:
 
         self.iniciar_sesion_button = tk.Button(root, text="Iniciar Sesión", command=self.iniciar_sesion)
         self.iniciar_sesion_button.pack()
+        
+        #archivos de consulta con prolog
+        #self.prolog = Prolog()
+        #self.prolog.consult("datos_usuarios.pl")
 
     def registrar(self):
         self.root.destroy()  # Cierra la ventana actual
@@ -33,26 +44,26 @@ class VentanaPrincipal:
         self.nombre_entry = tk.Entry(registro_window)
         self.nombre_entry.pack()
 
-        self.contraseña_label = tk.Label(registro_window, text="Contraseña:")
-        self.contraseña_label.pack()
-        self.contraseña_entry = tk.Entry(registro_window, show="*")
-        self.contraseña_entry.pack()
+        self.codigo_label = tk.Label(registro_window, text="Codigo universitario:")
+        self.codigo_label.pack()
+        self.codigo_entry = tk.Entry(registro_window, show="*")
+        self.codigo_entry.pack()
 
         self.cursos_label = tk.Label(registro_window, text="Cursos aprobados (separados por comas):")
         self.cursos_label.pack()
         self.cursos_entry = tk.Entry(registro_window)
         self.cursos_entry.pack()
 
-        self.registrar_button = tk.Button(registro_window, text="Registrar", command=self.registrar_usuario)
+        self.registrar_button = tk.Button(registro_window, text="Registrar", command=self.registrar_usuario,width = 6, height = 3)
         self.registrar_button.pack()
         
     def registrar_usuario(self):
         nombre = self.nombre_entry.get()
-        contraseña = self.contraseña_entry.get()
+        codigo = self.codigo_entry.get()
         cursos_aprobados = [curso.strip() for curso in self.cursos_entry.get().split(',')]
 
         # Agregar usuario a la base de datos Prolog
-        self.prolog.assertz(f"usuario({nombre}, {contraseña}, {cursos_aprobados})")
+        self.prolog.assertz(f"usuario({nombre}, {codigo}, {cursos_aprobados})")
 
         # Cerrar la ventana de registro
         self.root.destroy()
@@ -69,20 +80,20 @@ class VentanaPrincipal:
         self.nombre_entry = tk.Entry(inicio_sesion_window)
         self.nombre_entry.pack()
 
-        self.contraseña_label = tk.Label(inicio_sesion_window, text="Contraseña:")
-        self.contraseña_label.pack()
-        self.contraseña_entry = tk.Entry(inicio_sesion_window, show="*")
-        self.contraseña_entry.pack()
+        self.codigo_label = tk.Label(inicio_sesion_window, text="codigo:")
+        self.codigo_label.pack()
+        self.codigo_entry = tk.Entry(inicio_sesion_window, show="*")
+        self.codigo_entry.pack()
 
         self.iniciar_sesion_button = tk.Button(inicio_sesion_window, text="Iniciar Sesión", command=self.verificar_sesion)
         self.iniciar_sesion_button.pack()
         
     def verificar_sesion(self):
         nombre = self.nombre_entry.get()
-        contraseña = self.contraseña_entry.get()
+        codigo = self.codigo_entry.get()
 
         # Verificar la sesión en la base de datos Prolog
-        if list(self.prolog.query(f"usuario({nombre}, {contraseña}, _cursos)")):
+        if list(self.prolog.query(f"usuario({nombre}, {codigo}, _cursos)")):
             print("Inicio de sesión exitoso")
         else:
             print("Inicio de sesión fallido")
